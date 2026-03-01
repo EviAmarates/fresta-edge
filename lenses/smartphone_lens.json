@@ -1,0 +1,225 @@
+{
+  "domain": "smartphone",
+  "generated_at": "2026-03-01T02:30:00Z",
+  "formula": "E_total = E0 + E_upstream + E_inherited + P_structure",
+  "block_weights": {
+    "E0": 0.40,
+    "E_upstream": 0.35,
+    "E_inherited": 0.25
+  },
+  "global_admission_threshold": 0.85,
+  "metrics_1st_order": [
+    {
+      "name": "processor_performance",
+      "order": 1,
+      "direction": "maximize",
+      "weight": 0.18,
+      "threshold": 0.6,
+      "justification": "CPU/GPU performance determines responsiveness, gaming capability, and longevity of the device."
+    },
+    {
+      "name": "battery_endurance",
+      "order": 1,
+      "direction": "maximize",
+      "weight": 0.17,
+      "threshold": 0.55,
+      "justification": "Battery life is the most reported pain point across all user segments. A phone that dies midday fails its core function."
+    },
+    {
+      "name": "camera_quality",
+      "order": 1,
+      "direction": "maximize",
+      "weight": 0.16,
+      "threshold": 0.5,
+      "justification": "Camera has become the primary purchase driver for the majority of consumers since 2018."
+    },
+    {
+      "name": "display_quality",
+      "order": 1,
+      "direction": "maximize",
+      "weight": 0.14,
+      "threshold": 0.5,
+      "justification": "Resolution, refresh rate, and brightness directly affect daily usability and media consumption."
+    },
+    {
+      "name": "software_support_lifespan",
+      "order": 1,
+      "direction": "maximize",
+      "weight": 0.13,
+      "threshold": 0.6,
+      "justification": "Guaranteed OS and security updates determine real-world longevity beyond hardware specs."
+    },
+    {
+      "name": "thermal_management",
+      "order": 1,
+      "direction": "maximize",
+      "weight": 0.12,
+      "threshold": 0.5,
+      "justification": "Poor thermal management throttles performance under sustained load and degrades battery chemistry over time."
+    },
+    {
+      "name": "build_quality",
+      "order": 1,
+      "direction": "maximize",
+      "weight": 0.10,
+      "threshold": 0.45,
+      "justification": "Materials, IP rating, and structural integrity determine durability and perceived value."
+    }
+  ],
+  "relations_2nd_order": [
+    {
+      "type": "bottleneck",
+      "metrics": ["processor_performance", "thermal_management"],
+      "intensity": 0.85,
+      "penalty_or_bonus": 0.70,
+      "explanation": "A powerful processor is effectively capped by poor thermal design — sustained performance collapses under throttling. High benchmark scores become meaningless in real-world sustained use."
+    },
+    {
+      "type": "bottleneck",
+      "metrics": ["camera_quality", "processor_performance"],
+      "intensity": 0.65,
+      "penalty_or_bonus": 0.50,
+      "explanation": "Computational photography (night mode, HDR, video stabilisation) depends heavily on the image signal processor. A weak SoC limits what even excellent camera hardware can produce."
+    },
+    {
+      "type": "bottleneck",
+      "metrics": ["battery_endurance", "display_quality"],
+      "intensity": 0.70,
+      "penalty_or_bonus": 0.55,
+      "explanation": "High-refresh-rate and high-brightness displays are the single largest battery drain. A large battery paired with a 120Hz LTPO panel may underperform a smaller battery with a 60Hz display."
+    },
+    {
+      "type": "synergy",
+      "metrics": ["software_support_lifespan", "build_quality"],
+      "intensity": 0.75,
+      "penalty_or_bonus": 0.60,
+      "explanation": "A device with both durable hardware and long software support has genuinely extended useful life — the two multiply each other's value rather than simply adding."
+    },
+    {
+      "type": "synergy",
+      "metrics": ["processor_performance", "camera_quality"],
+      "intensity": 0.70,
+      "penalty_or_bonus": 0.55,
+      "explanation": "A fast SoC with a strong ISP unlocks advanced computational photography features — the combination produces results neither could achieve independently."
+    }
+  ],
+  "stress_3rd_order": [
+    {
+      "type": "infrastructure",
+      "name": "semiconductor_supply_chain",
+      "inherited_stress": 0.60,
+      "penalty": 0.40,
+      "explanation": "Smartphone SoCs (TSMC, Samsung Foundry) represent one of the most concentrated and geopolitically fragile supply chains in global manufacturing. Disruptions propagate directly into availability, pricing, and spec compromises."
+    },
+    {
+      "type": "infrastructure",
+      "name": "rare_earth_dependency",
+      "inherited_stress": 0.45,
+      "penalty": 0.30,
+      "explanation": "Displays, batteries, and motors depend on rare earth elements with heavily concentrated extraction. This creates structural price floors and ethical sourcing complexity invisible to spec sheets."
+    },
+    {
+      "type": "saturation",
+      "name": "flagship_market_saturation",
+      "inherited_stress": 0.55,
+      "penalty": 0.35,
+      "explanation": "The flagship segment has been technically saturated since ~2021. Meaningful year-over-year improvements have narrowed to single-digit percentages, while marketing amplifies marginal gains as revolutionary."
+    },
+    {
+      "type": "cycle",
+      "name": "camera_megapixel_hype",
+      "inherited_stress": 0.70,
+      "penalty": 0.55,
+      "explanation": "Megapixel counts and camera quantity are heavily marketed despite having weak correlation with real-world image quality. This cycle systematically distorts consumer perception and inflates camera scores."
+    },
+    {
+      "type": "cycle",
+      "name": "brand_premium_amplification",
+      "inherited_stress": 0.65,
+      "penalty": 0.50,
+      "explanation": "Brand premium (particularly Apple and Samsung) creates a persistent 20–40% price inflation over equivalent hardware from other manufacturers. Ecosystem lock-in amplifies willingness to pay beyond rational hardware value."
+    },
+    {
+      "type": "cycle",
+      "name": "annual_upgrade_cycle_pressure",
+      "inherited_stress": 0.50,
+      "penalty": 0.35,
+      "explanation": "Manufacturer and carrier incentive structures create artificial upgrade pressure that does not reflect actual device obsolescence. This cycle distorts perceived value of older devices and inflates new device desirability."
+    }
+  ],
+  "profiles": [
+    {
+      "id": "power_user",
+      "label": "Power User",
+      "description": "Demands maximum performance for multitasking, gaming, and productivity. Will not tolerate throttling or software limitations.",
+      "weight_adjustments": {
+        "processor_performance": 1.8,
+        "thermal_management": 1.7,
+        "software_support_lifespan": 1.4,
+        "battery_endurance": 1.2,
+        "camera_quality": 0.7
+      }
+    },
+    {
+      "id": "camera_first",
+      "label": "Camera-First Buyer",
+      "description": "Selects almost entirely on photographic output. Instagram, travel photography, and video content creation are primary use cases.",
+      "weight_adjustments": {
+        "camera_quality": 1.9,
+        "processor_performance": 1.5,
+        "display_quality": 1.3,
+        "build_quality": 0.8,
+        "battery_endurance": 0.9
+      }
+    },
+    {
+      "id": "value_seeker",
+      "label": "Value Seeker",
+      "description": "Maximises specs per euro. Actively resists brand premium and marketing. Compares mid-range options across all manufacturers.",
+      "weight_adjustments": {
+        "software_support_lifespan": 1.6,
+        "battery_endurance": 1.5,
+        "processor_performance": 1.3,
+        "build_quality": 1.2,
+        "camera_quality": 0.9
+      }
+    },
+    {
+      "id": "longevity_buyer",
+      "label": "Longevity Buyer",
+      "description": "Keeps phones 4–6 years. Prioritises durability, repairability, and guaranteed software updates over cutting-edge specs.",
+      "weight_adjustments": {
+        "software_support_lifespan": 1.9,
+        "build_quality": 1.8,
+        "battery_endurance": 1.5,
+        "thermal_management": 1.3,
+        "processor_performance": 0.8
+      }
+    },
+    {
+      "id": "ecosystem_locked",
+      "label": "Ecosystem-Committed User",
+      "description": "Deeply invested in a specific ecosystem (iOS or Android). Switching cost is high. Evaluates within a single brand family.",
+      "weight_adjustments": {
+        "software_support_lifespan": 1.7,
+        "camera_quality": 1.4,
+        "display_quality": 1.3,
+        "processor_performance": 1.2,
+        "build_quality": 1.1
+      }
+    },
+    {
+      "id": "casual_user",
+      "label": "Casual User",
+      "description": "Uses phone for calls, messaging, social media, and occasional photos. Not interested in benchmarks. Prioritises battery and ease of use.",
+      "weight_adjustments": {
+        "battery_endurance": 1.8,
+        "build_quality": 1.4,
+        "camera_quality": 1.1,
+        "processor_performance": 0.6,
+        "thermal_management": 0.5
+      }
+    }
+  ],
+  "summary": "The smartphone domain is defined by two structural realities that most reviews ignore. First, the three critical bottlenecks — processor vs. thermal management, camera vs. SoC, and battery vs. display — mean that individual spec scores are largely meaningless without understanding how they interact under real-world load. A phone with top-tier benchmarks and poor thermals will underperform a mid-range device with solid thermal design in sustained use. Second, the systemic stress layer is unusually heavy: semiconductor supply chain concentration, rare earth dependency, and three distinct marketing cycles (megapixel hype, brand premium, and annual upgrade pressure) collectively inflate prices and distort perceived value by an estimated 35–55% in the flagship segment. The global admission threshold of 0.85 means that a device must perform coherently across all three orders — not just score well on isolated specs — to be considered a genuinely good purchase regardless of profile."
+}
