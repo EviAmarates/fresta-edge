@@ -3,6 +3,7 @@
 **Tiago J. C. dos Santos** — Independent Researcher, Coimbra, Portugal  
 Fresta Lens Framework · Zenodo: [10.5281/zenodo.18251304](https://doi.org/10.5281/zenodo.18251304)  
 Implementation: [github.com/EviAmarates/fresta-edge](https://github.com/EviAmarates/fresta-edge)
+2026-03-01
 
 ---
 
