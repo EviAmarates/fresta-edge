@@ -4,6 +4,8 @@
 
 **EDGE** generates structured, domain-specific evaluation criteria using a three-order structural analysis engine. Given any domain (e.g. *gaming laptop*, *noise-cancelling headphones*, *electric car*), it produces a **lens** — a JSON file containing weighted metrics, interdependency maps, systemic stress factors, and buyer profiles.
 
+[![📄 SDA Paper](https://img.shields.io/badge/Paper-Structural_Domain_Analysis-8A2BE2?style=for-the-badge&logo=readthedocs&logoColor=white)](PAPER.md)
+
 The underlying formula:
 
 ```
